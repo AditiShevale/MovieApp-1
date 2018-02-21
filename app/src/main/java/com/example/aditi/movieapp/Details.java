@@ -30,6 +30,7 @@ import com.example.aditi.movieapp.Adapter.Movie;
 import com.example.aditi.movieapp.Adapter.MovieReview;
 import com.example.aditi.movieapp.Adapter.MovieReviewAdapter;
 import com.example.aditi.movieapp.Adapter.MovieTrailerAdapter;
+import com.facebook.stetho.Stetho;
 import com.squareup.picasso.Picasso;
 
 import java.net.URL;
