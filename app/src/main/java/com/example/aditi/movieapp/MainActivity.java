@@ -234,12 +234,14 @@ public class MainActivity extends Activity implements
         }
 
 
+
         @Override
         protected void onPostExecute(List<Movie> movies) {
 
             if (isOnline() && movies != null) {
                 mProgressBar.setVisibility(View.INVISIBLE);
-                mRecyclerMovie = new Recycler(MainActivity.this, movies, new RecyclerMovie.ListItemClickListener() {
+                mRecyclerMovie = new Recycler(MainActivity.this,
+                        movies, new Recycler.ListItemClickListener() {
                     @Override
                     public void onListItemClick(Movie movie) {
                         Intent intent = new Intent(MainActivity.this,
@@ -254,7 +256,8 @@ public class MainActivity extends Activity implements
                 mrecyclerView.setAdapter(mRecyclerMovie);
                 mRecyclerMovie.notifyDataSetChanged();
             } else {
-                Toasty.warning(MainActivity.this, "Check Your Internet Connection !!", Toast.LENGTH_SHORT).show();
+                Toasty.warning(MainActivity.this, "Check Internet Connection!",
+                        Toast.LENGTH_SHORT).show();
             }
 
 
@@ -329,8 +332,6 @@ public class MainActivity extends Activity implements
     }
 
 
-    // Function for checking is Network connection avaliable ?
-
     public boolean isOnline() {
         ConnectivityManager cm =
                 (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -338,7 +339,6 @@ public class MainActivity extends Activity implements
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
-    //Function for setting Toast color (Toasty)
     private void configToasty() {
 
         Toasty.Config.getInstance().
