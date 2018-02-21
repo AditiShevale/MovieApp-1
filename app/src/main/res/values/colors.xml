@@ -3,4 +3,18 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#292f4e</color>
+    <color name="colorPrimaryDark">#8e93e2</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="Movie_title">#455a64</color>
+    <color name="movie_title_layout">#37474f</color>
+    <color name="Movie_overview_layout">#455a64</color>
+    <color name="Movie_review_recycl_view">#455a64</color>
+
+
+
+    <color name="error_color">#F44336</color>
+    <color name="info_color">#3F51B5</color>
+    <color name="success_color">#009688</color>
+    <color name="warning_color">#FFC107</color>
 </resources>

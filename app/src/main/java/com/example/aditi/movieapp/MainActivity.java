@@ -49,8 +49,6 @@ public class MainActivity extends Activity implements
     private static final int MOVIE_LOADER_ID = 1;
     private FavoriteAdapter mFavoritesAdapter;
 
-
-    // onSaveinstance varibale
     private final static String MENU_SELECTED = "selected";
     private int selected = -1;
 
@@ -58,7 +56,6 @@ public class MainActivity extends Activity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Toasty
         configToasty();
 
 
@@ -113,10 +110,6 @@ public class MainActivity extends Activity implements
         }
 
 
-        //-------------------------------------------------------------------------------------------
-
-        //Swipe to Delete
-
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
@@ -154,22 +147,21 @@ public class MainActivity extends Activity implements
     @SuppressLint("StaticFieldLeak")
     @Override
 
-    //  Loader for quering databse queries in background--------------------------------------------
+
 
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new AsyncTaskLoader<Cursor>(this) {
 
 
-            // Initialize a Cursor, this will hold all the task data
-            Cursor mTaskData = null;
+             Cursor mTaskData = null;
 
             @Override
             protected void onStartLoading() {
                 if (mTaskData != null) {
-                    // Delivers any previously loaded data immediately
+
                     deliverResult(mTaskData);
                 } else {
-                    // Force a new load
+
                     forceLoad();
                 }
             }
@@ -191,7 +183,7 @@ public class MainActivity extends Activity implements
                 }
             }
 
-            // deliverResult sends the result of the load, a Cursor, to the registered listener
+
             public void deliverResult(Cursor data) {
                 mTaskData = data;
                 super.deliverResult(data);
@@ -219,7 +211,6 @@ public class MainActivity extends Activity implements
 
     }
 
-    //Loader finsihed-------------------------------------------------------------------------------
 
 
     @Override
@@ -230,7 +221,6 @@ public class MainActivity extends Activity implements
     }
 
 
-    //Creating inner class for Async Task-----------------------------------------------------------
 
     public class MovieDbQUeryTask extends AsyncTask<URL, Void, List<Movie>> {
 
@@ -282,10 +272,7 @@ public class MainActivity extends Activity implements
         }
     }
 
-    //----------------------------------------------------------------------------------------------
 
-
-    //onsaveInstanceState
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putInt(MENU_SELECTED, selected);
@@ -293,7 +280,6 @@ public class MainActivity extends Activity implements
     }
 
 
-    // For menu settings
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -331,10 +317,10 @@ public class MainActivity extends Activity implements
                 selected = id;
                 getActionBar().setTitle("YOUR FAVORITES !!");
                 getLoaderManager().restartLoader(MOVIE_LOADER_ID, null, this);
-                mFavoritesAdapter = new FavoritesAdapter(new RecyclerMovie.ListItemClickListener() {
+                mFavoritesAdapter = new FavoriteAdapter(new Recycler.ListItemClickListener() {
                     @Override
                     public void onListItemClick(Movie movie) {
-                        Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                        Intent intent = new Intent(MainActivity.this,Details.class);
                         intent.putExtra("data", movie);
                         startActivity(intent);
                     }
@@ -348,7 +334,7 @@ public class MainActivity extends Activity implements
     }
 
     private URL build(String sort) {
-        URL final_Url = NetworkUtils.buildURl(sort);
+        URL final_Url = Network.buildURl(sort);
         new MovieDbQUeryTask().execute(final_Url);
         return final_Url;
     }

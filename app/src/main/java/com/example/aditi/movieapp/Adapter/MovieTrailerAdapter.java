@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.aditi.movieapp.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
