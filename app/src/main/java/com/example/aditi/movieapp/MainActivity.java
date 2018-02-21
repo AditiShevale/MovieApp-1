@@ -32,9 +32,12 @@ import android.widget.Toast;
 import com.example.aditi.movieapp.Adapter.FavoriteAdapter;
 import com.example.aditi.movieapp.Adapter.Movie;
 import com.example.aditi.movieapp.Adapter.Recycler;
+import com.example.aditi.movieapp.Data.Contract;
 
 import java.net.URL;
 import java.util.List;
+
+import es.dmoral.toasty.Toasty;
 
 
 public class MainActivity extends Activity implements
@@ -60,7 +63,7 @@ public class MainActivity extends Activity implements
 
 
         mrecyclerView = findViewById(R.id.recyclerView);
-        mProgressBar = findViewById(R.id.progress_bar);
+        mProgressBar = findViewById(R.id.progressBar);
 
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(MainActivity.this, 2);
@@ -123,7 +126,7 @@ public class MainActivity extends Activity implements
 
             @Override
             public int getSwipeDirs(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-                if (viewHolder instanceof RecyclerMovie.MyViewHolder) return 0;
+                if (viewHolder instanceof Recycler.MyViewHolder) return 0;
                 return super.getSwipeDirs(recyclerView, viewHolder);
             }
 
@@ -244,7 +247,7 @@ public class MainActivity extends Activity implements
             List<Movie> resultm = null;
 
             if (isOnline()) {
-                List<Movie> result = NetworkUtils.fetchMovieData(urls[0]);
+                List<Movie> result = Network.fetchMovieData(urls[0]);
                 resultm = result;
                 return resultm;
             }
@@ -257,10 +260,11 @@ public class MainActivity extends Activity implements
 
             if (isOnline() && movies != null) {
                 mProgressBar.setVisibility(View.INVISIBLE);
-                mRecyclerMovie = new RecyclerMovie(MainActivity.this, movies, new RecyclerMovie.ListItemClickListener() {
+                mRecyclerMovie = new Recycler(MainActivity.this, movies, new RecyclerMovie.ListItemClickListener() {
                     @Override
                     public void onListItemClick(Movie movie) {
-                        Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                        Intent intent = new Intent(MainActivity.this,
+                                Details.class);
                         intent.putExtra("data", movie);
                         startActivity(intent);
 
