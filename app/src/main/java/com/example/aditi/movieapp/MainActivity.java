@@ -211,8 +211,6 @@ public class MainActivity extends Activity implements
 
     }
 
-
-
     public class MovieDbQUeryTask extends AsyncTask<URL, Void, List<Movie>> {
 
 

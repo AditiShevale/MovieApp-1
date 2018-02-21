@@ -8,28 +8,28 @@ import android.os.Parcelable;
  */
 
 public class Movie implements Parcelable {
-    private String mTitle, mReleaseDate,mOverview,mImage,mVoteAverage;
+    private String mTitle, mReleaseDate, mOverview, mImage, mVoteAverage, mId;
 
 
-    public Movie(String image){
+    public Movie(String image) {
         mImage = image;
     }
 
-
-
-    public Movie(String image, String title, String releaseDate, String voteAverage,
-                 String overview){
-
+    public Movie(String id, String image, String title, String releaseDate, String voteAverage, String overview) {
+        mId = id;
         mImage = image;
-        mTitle =title;
-        mOverview=overview;
+        mTitle = title;
         mReleaseDate = releaseDate;
         mVoteAverage = voteAverage;
-
+        mOverview = overview;
     }
 
-    public Movie(String id, String posterUrl, String title, String release_date, String vote, String overview) {
+    public String getImage() {
+        return mImage;
+    }
 
+    public void setImage(String image) {
+        mImage = image;
     }
 
     public String getTitle() {
@@ -48,6 +48,14 @@ public class Movie implements Parcelable {
         mReleaseDate = releaseDate;
     }
 
+    public String getVoteAverage() {
+        return mVoteAverage;
+    }
+
+    public void setVoteAverage(String voteAverage) {
+        mVoteAverage = voteAverage;
+    }
+
     public String getOverview() {
         return mOverview;
     }
@@ -56,28 +64,14 @@ public class Movie implements Parcelable {
         mOverview = overview;
     }
 
-    public String getImage() {
-        return mImage;
-    }
-
-    public void setImage(String image) {
-        mImage = image;
-    }
-
-    public String getVoteAverage() {
-        return mVoteAverage;
-    }
-
-    public void setVoteAverage(String voteAverage) {
-        mVoteAverage = voteAverage;
-    }
     @Override
     public int describeContents() {
         return 0;
     }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-
+        dest.writeString(this.mId);
         dest.writeString(this.mTitle);
         dest.writeString(this.mReleaseDate);
         dest.writeString(this.mOverview);
@@ -85,7 +79,17 @@ public class Movie implements Parcelable {
         dest.writeString(this.mVoteAverage);
     }
 
+    public String getId() {
+        return mId;
+    }
+
+    public void setId(String id) {
+        mId = id;
+    }
+
     protected Movie(Parcel in) {
+        this.mId = in.readString();
+
         this.mTitle = in.readString();
         this.mReleaseDate = in.readString();
         this.mOverview = in.readString();
@@ -93,10 +97,10 @@ public class Movie implements Parcelable {
         this.mVoteAverage = in.readString();
     }
 
-    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+    public static final Parcelable.Creator<Movie> CREATOR = new Parcelable.Creator<Movie>() {
         @Override
-        public Movie createFromParcel(Parcel in) {
-            return new Movie(in);
+        public Movie createFromParcel(Parcel source) {
+            return new Movie(source);
         }
 
         @Override
@@ -104,5 +108,4 @@ public class Movie implements Parcelable {
             return new Movie[size];
         }
     };
-
 }

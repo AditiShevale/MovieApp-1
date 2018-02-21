@@ -49,12 +49,8 @@ public class Details extends AppCompatActivity implements OnLikeListener{
     private TextView txt_Release;
     private ImageView img_Poster;
     private LikeButton lykbtn;
-
-    // for Trailer
     private RecyclerView mRecyclerView;
     private MovieTrailerAdapter mMovieTrailerAdapter;
-
-    //for review
     private RecyclerView mRecyclerViewReview;
     private MovieReviewAdapter mMovieReviewAdapter;
 
@@ -104,11 +100,9 @@ public class Details extends AppCompatActivity implements OnLikeListener{
         Picasso.with(img_Poster.getContext()).load("https://image.tmdb.org/t/p/w500" + movie.getImage()).into(img_Poster);
 
 
-        // pressing the button to save the list to the content provider
-
         lykbtn.setOnLikeListener(new OnLikeListener() {
             @Override
-            public void liked(LikeButton likeButton) {
+            public void liked(com.like.LikeButton likeButton) {
 
                 Toasty.success(Details.this, movie.getTitle() + " added to Favorites !!").show();
 
@@ -240,7 +234,6 @@ public class Details extends AppCompatActivity implements OnLikeListener{
     }
 
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.share, menu);
@@ -257,7 +250,7 @@ public class Details extends AppCompatActivity implements OnLikeListener{
                 sharingIntent.setType("text/plain");
 
                 sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject here");
-                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, String.valueOf(NetworkUtils.buildYoutubeUrl(First_trailer_link)));
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, String.valueOf(Network.buildYoutubeUrl(First_trailer_link)));
                 Log.i("share", String.valueOf(Network.buildYoutubeUrl(First_trailer_link)));
                 startActivity(Intent.createChooser(sharingIntent, "Share your Favorite Movie Trailer !!"));
                 return true;
@@ -277,19 +270,5 @@ public class Details extends AppCompatActivity implements OnLikeListener{
     }
 
 
-    @Override
-    public void liked(LikeButton likeButton) {
 
-    }
-
-    @Override
-    public void unLiked(LikeButton likeButton) {
-
-    }
-
-    private class LikeButton {
-        public void setOnLikeListener(Details details) {
-
-        }
-    }
 }
