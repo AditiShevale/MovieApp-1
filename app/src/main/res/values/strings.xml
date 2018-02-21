@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MovieApp</string>
+    <string name="setting_Popular">MostPopular</string>
+    <string name="setting_highestRated">HighRated</string>
+</resources>
