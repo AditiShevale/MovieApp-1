@@ -67,11 +67,6 @@ public class MainActivity extends Activity implements
 
         mrecyclerView.setLayoutManager(mLayoutManager);
         mrecyclerView.setItemAnimator(new DefaultItemAnimator());
-        //build("popular");
-
-
-        //onSavedInstance loading if exist-------------------------------------------------------------------------
-
 
         if (savedInstanceState == null) {
 
@@ -187,16 +182,13 @@ public class MainActivity extends Activity implements
             public void deliverResult(Cursor data) {
                 mTaskData = data;
                 super.deliverResult(data);
-                Log.i("tag", String.valueOf(data));
-            }
+                      }
         };
 
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-
-        Log.i("cursordata", String.valueOf(data));
 
         mFavoritesAdapter.swapCursor(data);
 
@@ -216,8 +208,7 @@ public class MainActivity extends Activity implements
     @Override
     protected void onResume() {
         super.onResume();
-        //re-queries for all tasks
-        //getLoaderManager().restartLoader(MOVIE_LOADER_ID , null, this);
+
     }
 
 

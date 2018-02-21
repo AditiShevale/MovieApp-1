@@ -29,12 +29,18 @@ import android.widget.Toast;
 import com.example.aditi.movieapp.Adapter.Movie;
 import com.example.aditi.movieapp.Adapter.MovieReview;
 import com.example.aditi.movieapp.Adapter.MovieReviewAdapter;
+import com.example.aditi.movieapp.Adapter.MovieTrailer;
 import com.example.aditi.movieapp.Adapter.MovieTrailerAdapter;
+import com.example.aditi.movieapp.Data.Contract;
 import com.facebook.stetho.Stetho;
+import com.like.LikeButton;
+import com.like.OnLikeListener;
 import com.squareup.picasso.Picasso;
 
 import java.net.URL;
 import java.util.List;
+
+import es.dmoral.toasty.Toasty;
 
 public class Details extends AppCompatActivity implements OnLikeListener{
     private TextView txt_Title;
@@ -70,17 +76,14 @@ public class Details extends AppCompatActivity implements OnLikeListener{
 
         Stetho.initializeWithDefaults(this);
 
-
         ActionBar actionBar = this.getActionBar();
         getActionBar();
 
-        // for trailer adapter----------------------------------------------------------------------
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.HORIZONTAL));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        //for review adapter------------------------------------------------------------------------
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getApplicationContext());
         manager.setAutoMeasureEnabled(true);
         mRecyclerViewReview.setLayoutManager(manager);
@@ -107,7 +110,7 @@ public class Details extends AppCompatActivity implements OnLikeListener{
             @Override
             public void liked(LikeButton likeButton) {
 
-                Toasty.success(DetailActivity.this, movie.getTitle() + " added to Favorites !!").show();
+                Toasty.success(Details.this, movie.getTitle() + " added to Favorites !!").show();
 
 
                 ContentValues contentValues = new ContentValues();
@@ -125,28 +128,35 @@ public class Details extends AppCompatActivity implements OnLikeListener{
             }
 
             @Override
-            public void unLiked(LikeButton likeButton) {
+            public void unLiked(com.like.LikeButton likeButton) {
 
-                Toasty.error(DetailActivity.this, "SWIPE TO DELETE !!").show();
+                Toasty.error(Details.this, "SWIPE TO DELETE !!").show();
 
             }
         });
 
 
-        // for movie trailer------------------------------------------------------------------------
-        URL url = NetworkUtils.buildTrailerURl(movie.getId());
+
+        URL url = Network.buildTrailerURl(movie.getId());
         new MovieTrailerAsyncTask().execute(url);
 
-        // for movie review-------------------------------------------------------------------------
-        URL url1 = NetworkUtils.buildUrlReview(movie.getId());
+
+        URL url1 = Network.buildUrlReview(movie.getId());
         new MovieReviewAsyncTask().execute(url1);
 
-        //fetching the first trailer link to share youtube videos
+        }
+
+    @Override
+    public void liked(com.like.LikeButton likeButton) {
+
+    }
+
+    @Override
+    public void unLiked(com.like.LikeButton likeButton) {
 
     }
 
 
-    //Async task for Movie Trailer------------------------------------------------------------------
     public class MovieTrailerAsyncTask extends AsyncTask<URL, Void, List<MovieTrailer>> {
 
 
@@ -162,7 +172,7 @@ public class Details extends AppCompatActivity implements OnLikeListener{
         protected List<MovieTrailer> doInBackground(URL... urls) {
             List<MovieTrailer> movieTrailersm = null;
             if (isOnline()) {
-                List<MovieTrailer> result = NetworkUtils.fetchMovieTrialerData(urls[0]);
+                List<MovieTrailer> result =Network.fetchMovieTrialerData(urls[0]);
                 Log.i("result", String.valueOf(result));
                 movieTrailersm = result;
                 return movieTrailersm;
@@ -180,7 +190,7 @@ public class Details extends AppCompatActivity implements OnLikeListener{
                         Intent intent = new Intent();
                         intent.setAction(Intent.ACTION_VIEW);
                         intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                        intent.setData(NetworkUtils.buildYoutubeUrl(movieTrailer.getTrailer_key()));
+                        intent.setData(Network.buildYoutubeUrl(movieTrailer.getTrailer_key()));
                         startActivity(intent);
                         MovieTrailer share_link = movies.get(0);
                         First_trailer_link = share_link.getTrailer_key();
@@ -191,13 +201,10 @@ public class Details extends AppCompatActivity implements OnLikeListener{
 
                 mMovieTrailerAdapter.notifyDataSetChanged();
             } else {
-                Toast.makeText(DetailActivity.this, "Trailers cant be fetched #offline", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Details.this, "Trailers cant be fetched #offline", Toast.LENGTH_SHORT).show();
             }
         }
     }
-
-
-    //AsyncTask For Movie Review--------------------------------------------------------------------
 
     public class MovieReviewAsyncTask extends AsyncTask<URL, Void, List<MovieReview>> {
         @Override
@@ -233,10 +240,6 @@ public class Details extends AppCompatActivity implements OnLikeListener{
     }
 
 
-    //menu for sharing the first link of the movie (extra implementation !!)
-    //share link only works when once any trailer is played after that share links succcessfully works
-    //as the fetching of the first trailer link is set onclickListner
-    //Any suggestions how to reslove this?
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -265,7 +268,7 @@ public class Details extends AppCompatActivity implements OnLikeListener{
 
     }
 
-    // Function for checking the Network connectivity-----------------------------------------------
+
     public boolean isOnline() {
         ConnectivityManager cm =
                 (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
