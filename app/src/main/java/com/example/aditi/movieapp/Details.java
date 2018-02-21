@@ -195,7 +195,8 @@ public class Details extends AppCompatActivity implements OnLikeListener{
 
                 mMovieTrailerAdapter.notifyDataSetChanged();
             } else {
-                Toast.makeText(Details.this, "Trailers cant be fetched #offline", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Details.this, "Trailers " +
+                        "cant be fetched #offline", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -245,13 +246,12 @@ public class Details extends AppCompatActivity implements OnLikeListener{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_item_share:
-                Toast.makeText(this, "Sharing is caring", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
 
                 sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject here");
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, String.valueOf(Network.buildYoutubeUrl(First_trailer_link)));
-                Log.i("share", String.valueOf(Network.buildYoutubeUrl(First_trailer_link)));
                 startActivity(Intent.createChooser(sharingIntent, "Share your Favorite Movie Trailer !!"));
                 return true;
 
