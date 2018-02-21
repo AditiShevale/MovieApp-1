@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-condensed"
         android:padding="8dp"
-        android:text="Gimpy"
+        android:text="Hello"
 
         android:textSize="16sp"
         android:textStyle="bold"

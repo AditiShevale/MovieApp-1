@@ -126,7 +126,7 @@
                 android:textSize="20sp"
                 tools:layout_editor_absoluteX="53dp"
                 tools:layout_editor_absoluteY="0dp"
-                tools:text="Android Nanodegreee Project Stage-1" />
+                tools:text="Android Nanodegreee Project Stage-2" />
 
 
         </ScrollView>
