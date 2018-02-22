@@ -138,7 +138,8 @@ public class Network {
             JSONObject baseJsonResponse = new JSONObject(movieJson);
 
 
-            JSONArray movieArray = baseJsonResponse.getJSONArray("results");
+            JSONArray movieArray = baseJsonResponse.getJSONArray(
+                    "results");
 
 
             for (int i = 0; i < movieArray.length(); i++) {

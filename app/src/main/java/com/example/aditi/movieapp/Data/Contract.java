@@ -7,7 +7,7 @@ import android.provider.BaseColumns;
  * Created by aditi on 21/2/18.
  */
 
-public class Contract {public static final String AUTHORITY = "com.example.natan.movietralierapp1";
+public class Contract {public static final String AUTHORITY = "com.example.aditi.movietralierapp1";
 
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + AUTHORITY);
 

@@ -40,8 +40,8 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 
-public class MainActivity extends Activity implements
-        LoaderManager.LoaderCallbacks<Cursor>{
+public class MainActivity extends AppCompatActivity implements
+        LoaderManager.LoaderCallbacks<Cursor> {
 
     private Recycler mRecyclerMovie;
     private RecyclerView mrecyclerView;
@@ -85,15 +85,19 @@ public class MainActivity extends Activity implements
                 } else if (selected == R.id.favorites) {
 
                     getActionBar().setTitle("YOUR FAVORITES !!");
-                    getLoaderManager().restartLoader(MOVIE_LOADER_ID, null, this);
-                    mFavoritesAdapter = new FavoriteAdapter(new Recycler.ListItemClickListener() {
-                        @Override
-                        public void onListItemClick(Movie movie) {
-                            Intent intent = new Intent(MainActivity.this, Details.class);
-                            intent.putExtra("data", movie);
-                            startActivity(intent);
-                        }
-                    }, this);
+                    getLoaderManager().restartLoader(MOVIE_LOADER_ID,
+                            null, this);
+                    mFavoritesAdapter = new FavoriteAdapter(new
+                                                                    Recycler.ListItemClickListener() {
+                                                                        @Override
+                                                                        public void onListItemClick(Movie movie) {
+                                                                            Intent intent = new Intent(
+                                                                                    MainActivity.this,
+                                                                                    Details.class);
+                                                                            intent.putExtra("data", movie);
+                                                                            startActivity(intent);
+                                                                        }
+                                                                    }, this);
                     mrecyclerView.setAdapter(mFavoritesAdapter);
 
                 } else if (selected == R.id.most_popular) {
@@ -103,7 +107,6 @@ public class MainActivity extends Activity implements
 
             }
         }
-
 
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
@@ -143,12 +146,11 @@ public class MainActivity extends Activity implements
     @Override
 
 
-
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new AsyncTaskLoader<Cursor>(this) {
 
 
-             Cursor mTaskData = null;
+            Cursor mTaskData = null;
 
             @Override
             protected void onStartLoading() {
@@ -182,7 +184,7 @@ public class MainActivity extends Activity implements
             public void deliverResult(Cursor data) {
                 mTaskData = data;
                 super.deliverResult(data);
-                      }
+            }
         };
 
     }
@@ -202,7 +204,6 @@ public class MainActivity extends Activity implements
         mFavoritesAdapter.swapCursor(null);
 
     }
-
 
 
     @Override
@@ -232,7 +233,6 @@ public class MainActivity extends Activity implements
             }
             return resultm;
         }
-
 
 
         @Override
@@ -282,11 +282,12 @@ public class MainActivity extends Activity implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+
         int id = item.getItemId();
         switch (id) {
             case R.id.highest_Rated:
                 if (isOnline()) {
-                    getActionBar().setTitle("HIGHEST RATED");
+                    getSupportActionBar().setTitle("HIGHEST RATED");
                     build("top_rated");
                     selected = id;
                 } else {
@@ -297,22 +298,29 @@ public class MainActivity extends Activity implements
 
             case R.id.most_popular:
                 if (isOnline()) {
-                    getActionBar().setTitle("MOST POPULAR");
+                    getSupportActionBar().setTitle("MOST POPULAR");
                     build("popular");
                     selected = id;
                 } else {
-                    Toasty.warning(MainActivity.this, "Check Your Internet Connection !!", Toast.LENGTH_SHORT).show();
+                    Toasty.warning(MainActivity.this,
+                            "Check Your Internet Connection !!",
+                            Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.favorites:
 
                 selected = id;
-                getActionBar().setTitle("YOUR FAVORITES !!");
-                getLoaderManager().restartLoader(MOVIE_LOADER_ID, null, this);
-                mFavoritesAdapter = new FavoriteAdapter(new Recycler.ListItemClickListener() {
+
+                getSupportActionBar().setTitle("YOUR FAVORITES");
+                getLoaderManager().restartLoader(MOVIE_LOADER_ID,
+                        null, this);
+                mFavoritesAdapter = new FavoriteAdapter(new Recycler.
+                        ListItemClickListener() {
                     @Override
                     public void onListItemClick(Movie movie) {
-                        Intent intent = new Intent(MainActivity.this,Details.class);
+                        Intent intent = new Intent(
+                                MainActivity.this,
+                                Details.class);
                         intent.putExtra("data", movie);
                         startActivity(intent);
                     }

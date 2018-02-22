@@ -118,7 +118,9 @@ public class Details extends AppCompatActivity implements OnLikeListener{
                 contentValues.put(Contract.Entry.COLUMN_MOVIE_DATE, movie.getReleaseDate());
                 contentValues.put(Contract.Entry.COLUMN_POSTER_PATH, movie.getImage());
 
-                Uri uri = getContentResolver().insert(Contract.Entry.CONTENT_URI, contentValues);
+                Uri uri = getContentResolver().insert(Contract.Entry.
+
+                        CONTENT_URI, contentValues);
 
 
             }

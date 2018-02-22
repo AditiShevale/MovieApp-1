@@ -14,7 +14,7 @@
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="#37474f"
+        android:background="#FFEE58"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:background="#455a64"
+
             android:fontFamily="serif"
             android:gravity="center"
             android:paddingBottom="5dp"
@@ -36,7 +36,7 @@
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             tools:text="Hello" />
-
+        <!--android:background="#9c4dcc"-->
 
     </RelativeLayout>
 
@@ -48,7 +48,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="50dp"
-        android:background="#455a64"
+        android:background="#FB8C00"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -140,7 +140,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
         app:layout_constraintVertical_bias="0.024"
-        tools:text="25-03-1992" />
+        tools:text="21-02-2018" />
 
     <com.like.LikeButton
         android:id="@+id/star_button"

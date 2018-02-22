@@ -31,7 +31,8 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MyView
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        View view = inflater.inflate(R.layout.custom_list, parent, false);
+        View view = inflater.inflate(R.layout.custom_list, parent,
+                false);
         return new MyViewHolder(view);
     }
 
@@ -57,14 +58,14 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MyView
         return mCursor.getCount();
     }
     public Cursor swapCursor(Cursor c) {
-        // check if this cursor is the same as the previous cursor (mCursor)
+
         if (mCursor == c) {
-            return null; // bc nothing has changed
+            return null;
         }
         Cursor temp = mCursor;
-        this.mCursor = c; // new cursor value assigned
+        this.mCursor = c;
 
-        //check if this is a valid cursor, then update the cursor
+
         if (c != null) {
             this.notifyDataSetChanged();
         }

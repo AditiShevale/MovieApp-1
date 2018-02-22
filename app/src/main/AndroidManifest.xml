@@ -25,6 +25,10 @@
                 android:name="android.support."
                 android:value=".MainActivity"/>
         </activity>
+        <provider
+            android:name="com.example.aditi.movieapp.Data.MovieContentProvider"
+            android:authorities="com.example.aditi.movietralierapp1"
+            android:exported="false" />
     </application>
 
 </manifest>
