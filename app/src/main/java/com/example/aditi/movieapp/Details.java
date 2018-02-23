@@ -128,7 +128,7 @@ public class Details extends AppCompatActivity implements OnLikeListener{
             @Override
             public void unLiked(com.like.LikeButton likeButton) {
 
-                Toasty.error(Details.this, "SWIPE TO DELETE !!").show();
+                Toasty.error(Details.this, "SWIPE TO DELETE!").show();
 
             }
         });
@@ -199,7 +199,7 @@ public class Details extends AppCompatActivity implements OnLikeListener{
                 mMovieTrailerAdapter.notifyDataSetChanged();
             } else {
                 Toast.makeText(Details.this, "Trailers " +
-                        "cant be fetched #offline", Toast.LENGTH_SHORT).show();
+                        "Cannot fetch Offline", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -215,7 +215,6 @@ public class Details extends AppCompatActivity implements OnLikeListener{
             List<MovieReview> movieReviewsm = null;
             if (isOnline()) {
                 List<MovieReview> movieReviews = Network.fetchMovieReviewData(urls[0]);
-                Log.i("result", String.valueOf(movieReviews));
                 movieReviewsm = movieReviews;
                 return movieReviewsm;
             }
@@ -240,7 +239,7 @@ public class Details extends AppCompatActivity implements OnLikeListener{
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.share, menu);
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -248,15 +247,8 @@ public class Details extends AppCompatActivity implements OnLikeListener{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_item_share:
-                Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
-                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-                sharingIntent.setType("text/plain");
 
-                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject here");
-                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, String.valueOf(Network.buildYoutubeUrl(First_trailer_link)));
-                startActivity(Intent.createChooser(sharingIntent, "Share your Favorite Movie Trailer !!"));
-                return true;
+
 
             default:
                 return super.onOptionsItemSelected(item);
