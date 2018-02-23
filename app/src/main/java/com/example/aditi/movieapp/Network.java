@@ -220,7 +220,6 @@ public class Network {
                 JSONObject currentMovie = movieArray.getJSONObject(i);
 
                 String trailer_key = currentMovie.getString("key");
-                Log.i("key", trailer_key);
 
                 MovieTrailer movieTrailers = new MovieTrailer(trailer_key);
 
