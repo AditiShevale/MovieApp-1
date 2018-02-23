@@ -171,7 +171,6 @@ public class Details extends AppCompatActivity implements OnLikeListener{
             List<MovieTrailer> movieTrailersm = null;
             if (isOnline()) {
                 List<MovieTrailer> result =Network.fetchMovieTrialerData(urls[0]);
-                Log.i("result", String.valueOf(result));
                 movieTrailersm = result;
                 return movieTrailersm;
             }

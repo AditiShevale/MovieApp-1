@@ -22,7 +22,6 @@ public class MovieTrailerAdapter extends RecyclerView.Adapter<MovieTrailerAdapte
     private Context context;
     private ListItemClickListener mListItemClickListener;
 
-    //Interface
 
     public interface ListItemClickListener {
 

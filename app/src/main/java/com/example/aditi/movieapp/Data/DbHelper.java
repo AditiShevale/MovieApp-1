@@ -11,19 +11,16 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DbHelper extends SQLiteOpenHelper {
 
 
-    //Name of the database
+    //Name of Database
     private static final String DATABASE_NAME = "movieDb.db";
 
-    //If database schema changed update the version
+    //Update the version
     private static final int VERSION = 1;
 
     //Constructor
     public DbHelper(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
     }
-
-
-    //called when databse is first created
 
     @Override
     public void onCreate(SQLiteDatabase db) {
