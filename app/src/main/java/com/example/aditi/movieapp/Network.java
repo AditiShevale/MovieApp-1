@@ -38,7 +38,7 @@ public class Network {
 
     final static String API_KEY = "api_key";
 
-    final static String api_key = "**Paste Your Api Key Here**";
+    final static String api_key = "00bab64ed019eded1ab3d951af1bb2a0";
 
     final static String LANGUAGE = "language";
     final static String language = "en-US";
@@ -81,9 +81,12 @@ public class Network {
             jsonResponse = getResponseFromHttpUrl(url);
         } catch (IOException e) {
             e.printStackTrace();
+
         }
+
         List<MovieReview> movieReviews = extractReviewFeaturesFromJson(jsonResponse);
         return movieReviews;
+
     }
 
 
