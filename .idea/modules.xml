@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MovieApp.iml" filepath="$PROJECT_DIR$/MovieApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/MovieApp-1.iml" filepath="$PROJECT_DIR$/.idea/MovieApp-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/MovieApp-1.iml" filepath="$PROJECT_DIR$/.idea/MovieApp-1.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/MovieApp-2.iml" filepath="$PROJECT_DIR$/.idea/MovieApp-2.iml" />
       <module fileurl="file://$PROJECT_DIR$/MovieApp-master.iml" filepath="$PROJECT_DIR$/MovieApp-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
