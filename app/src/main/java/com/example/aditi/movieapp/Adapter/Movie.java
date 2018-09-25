@@ -8,20 +8,37 @@ import android.os.Parcelable;
  */
 
 public class Movie implements Parcelable {
-    private String mTitle, mReleaseDate, mOverview, mImage, mVoteAverage, mId;
+    private String mTitle, mReleaseDate, mOverview, mImage, mVoteAverage, mBackImage;
 
 
     public Movie(String image) {
         mImage = image;
     }
 
-    public Movie(String id, String image, String title, String releaseDate, String voteAverage, String overview) {
-        mId = id;
+    public Movie(String image, String title, String releaseDate, String voteAverage, String overview) {
         mImage = image;
         mTitle = title;
         mReleaseDate = releaseDate;
         mVoteAverage = voteAverage;
         mOverview = overview;
+    }
+
+    public String getBackImage() {
+        return mBackImage;
+    }
+
+    public void setBackImage(String backImage) {
+        mBackImage = backImage;
+    }
+
+    public Movie(String image, String title, String releaseDate, String voteAverage, String overview, String backImage) {
+
+        mTitle = title;
+        mReleaseDate = releaseDate;
+        mOverview = overview;
+        mImage = image;
+        mVoteAverage = voteAverage;
+        mBackImage = backImage;
     }
 
     public String getImage() {
@@ -71,33 +88,24 @@ public class Movie implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.mId);
         dest.writeString(this.mTitle);
         dest.writeString(this.mReleaseDate);
         dest.writeString(this.mOverview);
         dest.writeString(this.mImage);
         dest.writeString(this.mVoteAverage);
-    }
-
-    public String getId() {
-        return mId;
-    }
-
-    public void setId(String id) {
-        mId = id;
+        dest.writeString(this.mBackImage);
     }
 
     protected Movie(Parcel in) {
-        this.mId = in.readString();
-
         this.mTitle = in.readString();
         this.mReleaseDate = in.readString();
         this.mOverview = in.readString();
         this.mImage = in.readString();
         this.mVoteAverage = in.readString();
+        this.mBackImage = in.readString();
     }
 
-    public static final Parcelable.Creator<Movie> CREATOR = new Parcelable.Creator<Movie>() {
+    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
         @Override
         public Movie createFromParcel(Parcel source) {
             return new Movie(source);

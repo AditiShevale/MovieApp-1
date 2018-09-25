@@ -6,8 +6,6 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.aditi.movieapp.Adapter.Movie;
-import com.example.aditi.movieapp.Adapter.MovieReview;
-import com.example.aditi.movieapp.Adapter.MovieTrailer;
 
 import org.json.JSONArray;
 import org.json.JSONException;

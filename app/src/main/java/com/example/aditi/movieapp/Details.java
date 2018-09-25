@@ -1,7 +1,6 @@
 package com.example.aditi.movieapp;
 
 import android.app.ActionBar;
-import android.app.Activity;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -19,7 +18,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import android.support.v7.widget.ShareActionProvider;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -29,10 +27,6 @@ import android.widget.Toast;
 
 
 import com.example.aditi.movieapp.Adapter.Movie;
-import com.example.aditi.movieapp.Adapter.MovieReview;
-import com.example.aditi.movieapp.Adapter.MovieReviewAdapter;
-import com.example.aditi.movieapp.Adapter.MovieTrailer;
-import com.example.aditi.movieapp.Adapter.MovieTrailerAdapter;
 import com.example.aditi.movieapp.Data.Contract;
 import com.facebook.stetho.Stetho;
 import com.like.LikeButton;

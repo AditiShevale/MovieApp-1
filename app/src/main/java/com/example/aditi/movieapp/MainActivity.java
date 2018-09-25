@@ -2,7 +2,6 @@ package com.example.aditi.movieapp;
 
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.LoaderManager;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
@@ -22,14 +21,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 
-import com.example.aditi.movieapp.Adapter.FavoriteAdapter;
 import com.example.aditi.movieapp.Adapter.Movie;
 import com.example.aditi.movieapp.Adapter.Recycler;
 import com.example.aditi.movieapp.Data.Contract;
