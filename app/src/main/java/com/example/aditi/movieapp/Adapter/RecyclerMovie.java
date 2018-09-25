@@ -18,12 +18,12 @@ import java.util.List;
  * Created by aditi on 23/1/18.
  */
 
-public class Recycler extends  RecyclerView.Adapter<Recycler.MyViewHolder> {
+public class RecyclerMovie extends  RecyclerView.Adapter<RecyclerMovie.MyViewHolder> {
 
 private List<Movie>mMovieList;
 final private ListItemClickListener mOnClickListener;
 
-    public Recycler(MainActivity mainActivity, List<Movie> movieList, ListItemClickListener onClickListener) {
+    public RecyclerMovie(MainActivity mainActivity, List<Movie> movieList, ListItemClickListener onClickListener) {
         mMovieList = movieList;
         mOnClickListener = onClickListener;
     }
@@ -36,14 +36,14 @@ final private ListItemClickListener mOnClickListener;
 
 
     @Override
-    public Recycler.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerMovie.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
        View itemView = LayoutInflater.from(parent.getContext())
                .inflate(R.layout.custom_list,parent,false);
         return new MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(Recycler.MyViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerMovie.MyViewHolder holder, int position) {
         com.example.aditi.movieapp.Adapter.Movie movie = mMovieList.get(position);
         Context context = holder.movieImg.getContext();
         Picasso.with(context).load("https://image.tmdb.org/t/p/w185/"+movie.

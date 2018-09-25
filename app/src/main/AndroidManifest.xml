@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Details"
+        <activity android:name=".DetailActivity"
             android:parentActivityName="com.example.aditi.movieapp.MainActivity">
             <meta-data
                 android:name="android.support."
