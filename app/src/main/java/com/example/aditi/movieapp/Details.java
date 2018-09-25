@@ -129,11 +129,11 @@ public class Details extends AppCompatActivity implements OnLikeListener{
 
 
 
-        URL url = Network.buildTrailerURl(movie.getId());
+        URL url = NetworkUtils.buildTrailerURl(movie.getId());
         new MovieTrailerAsyncTask().execute(url);
 
 
-        URL url1 = Network.buildUrlReview(movie.getId());
+        URL url1 = NetworkUtils.buildUrlReview(movie.getId());
         new MovieReviewAsyncTask().execute(url1);
 
         }
@@ -164,7 +164,7 @@ public class Details extends AppCompatActivity implements OnLikeListener{
         protected List<MovieTrailer> doInBackground(URL... urls) {
             List<MovieTrailer> movieTrailersm = null;
             if (isOnline()) {
-                List<MovieTrailer> result =Network.fetchMovieTrialerData(urls[0]);
+                List<MovieTrailer> result = NetworkUtils.fetchMovieTrialerData(urls[0]);
                 movieTrailersm = result;
                 return movieTrailersm;
             }
@@ -181,7 +181,7 @@ public class Details extends AppCompatActivity implements OnLikeListener{
                         Intent intent = new Intent();
                         intent.setAction(Intent.ACTION_VIEW);
                         intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                        intent.setData(Network.buildYoutubeUrl(movieTrailer.getTrailer_key()));
+                        intent.setData(NetworkUtils.buildYoutubeUrl(movieTrailer.getTrailer_key()));
                         startActivity(intent);
                         MovieTrailer share_link = movies.get(0);
                         First_trailer_link = share_link.getTrailer_key();
@@ -208,7 +208,7 @@ public class Details extends AppCompatActivity implements OnLikeListener{
         protected List<MovieReview> doInBackground(URL... urls) {
             List<MovieReview> movieReviewsm = null;
             if (isOnline()) {
-                List<MovieReview> movieReviews = Network.fetchMovieReviewData(urls[0]);
+                List<MovieReview> movieReviews = NetworkUtils.fetchMovieReviewData(urls[0]);
                 movieReviewsm = movieReviews;
                 return movieReviewsm;
             }

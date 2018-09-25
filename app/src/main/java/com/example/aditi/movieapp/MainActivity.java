@@ -224,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements
             List<Movie> resultm = null;
 
             if (isOnline()) {
-                List<Movie> result = Network.fetchMovieData(urls[0]);
+                List<Movie> result = NetworkUtils.fetchMovieData(urls[0]);
                 resultm = result;
                 return resultm;
             }
@@ -331,7 +331,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private URL build(String sort) {
-        URL final_Url = Network.buildURl(sort);
+        URL final_Url = NetworkUtils.buildURl(sort);
         new MovieDbQUeryTask().execute(final_Url);
         return final_Url;
     }
