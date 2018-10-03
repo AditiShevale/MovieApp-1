@@ -14,42 +14,50 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by aditi on 23/1/18.
  */
 
 public class RecyclerMovie extends  RecyclerView.Adapter<RecyclerMovie.MyViewHolder> {
 
-private List<Movie>mMovieList;
-final private ListItemClickListener mOnClickListener;
+    private List<Result> mMovieList;
+    //Implementing on click listner
+    final private ListItemClickListener mOnClickListener;
 
-    public RecyclerMovie(MainActivity mainActivity, List<Movie> movieList, ListItemClickListener onClickListener) {
-        mMovieList = movieList;
-        mOnClickListener = onClickListener;
+    //Interface
+
+    public interface ListItemClickListener {
+
+        void onListItemClick(Result movie);
     }
 
 
-    public interface ListItemClickListener {
-        void onListItemClick(Movie movie);
-
+    public RecyclerMovie(MainActivity mainActivity, List<Result> movieList, ListItemClickListener listener) {
+        mMovieList = movieList;
+        mOnClickListener = listener;
     }
 
 
     @Override
-    public RecyclerMovie.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-       View itemView = LayoutInflater.from(parent.getContext())
-               .inflate(R.layout.custom_list,parent,false);
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.custom_list, parent, false);
+
         return new MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerMovie.MyViewHolder holder, int position) {
-        com.example.aditi.movieapp.Adapter.Movie movie = mMovieList.get(position);
-        Context context = holder.movieImg.getContext();
-        Picasso.with(context).load("https://image.tmdb.org/t/p/w185/"+movie.
-                getImage()).into(holder.movieImg);
-        Log.i("check","https://image.tmdb.org/t/p/w185/"+movie.getImage());
-        holder.bind(mMovieList.get(position),mOnClickListener);
+    public void onBindViewHolder(MyViewHolder holder, int position) {
+
+        Result movie = mMovieList.get(position);
+
+        Picasso.get().load("https://image.tmdb.org/t/p/w500" + movie.getPosterPath()).transform(new RoundedTransformation(14, 0)).into(holder.img_movie);
+        // holder.bind(mMovieList.get(position), mOnClickListener);
+        //ViewCompat.setTransitionName(holder.img_movie, movie.getTitle());
+
 
     }
 
@@ -58,34 +66,28 @@ final private ListItemClickListener mOnClickListener;
         return mMovieList.size();
     }
 
-
-
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public ImageView movieImg;
+
+        @BindView(R.id.imageView)
+        ImageView img_movie;
 
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            movieImg =itemView.findViewById(R.id.imageView);
+            ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
-        }
-
-        public void bind(final Movie movie, final ListItemClickListener onClickListener) {
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onClickListener.onListItemClick(movie);
-
-                }
-            });
 
         }
+
 
         @Override
         public void onClick(View v) {
+
             int adapterPosition = getAdapterPosition();
-            Movie posterClick = mMovieList.get(adapterPosition);
-            mOnClickListener.onListItemClick(posterClick);
+            Result result = mMovieList.get(adapterPosition);
+            mOnClickListener.onListItemClick(result);
+
+
         }
     }
 }

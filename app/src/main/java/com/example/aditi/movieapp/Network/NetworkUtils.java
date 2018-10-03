@@ -1,4 +1,4 @@
-package com.example.aditi.movieapp;
+package com.example.aditi.movieapp.Network;
 
 
 import android.net.Uri;
@@ -28,6 +28,7 @@ import static android.content.ContentValues.TAG;
  */
 
 public class NetworkUtils {
+
     final static String MOVIE_DB_URL = "http://api.themoviedb.org/3/movie/";
     private static final String MOVIE_REVIEW_URL = "https://api.themoviedb.org/3/movie";
     final static String MOVIE_TRAILER_URL = "https://api.themoviedb.org/3/movie";
@@ -38,13 +39,7 @@ public class NetworkUtils {
 
     final static String api_key = "00bab64ed019eded1ab3d951af1bb2a0";
 
-    final static String LANGUAGE = "language";
-    final static String language = "en-US";
-    final static String SORT_BY = "sort_by";
-    final static String INCLUDE_ADULT = "include_adult";
-    final static String include_adult = "false";
-    final static String INCLUDE_VIDEO = "include_video";
-    final static String include_video = "false";
+
 
     //Fetching the json response
 

@@ -8,6 +8,7 @@ import android.os.Parcelable;
  */
 
 public class Movie implements Parcelable {
+
     private String mTitle, mReleaseDate, mOverview, mImage, mVoteAverage, mBackImage;
 
 

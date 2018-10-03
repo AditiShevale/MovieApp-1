@@ -29,6 +29,7 @@ import android.widget.Toast;
 
 import com.example.aditi.movieapp.Adapter.Movie;
 import com.example.aditi.movieapp.Data.Contract;
+import com.example.aditi.movieapp.model.Result;
 import com.facebook.stetho.Stetho;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
@@ -43,10 +44,9 @@ import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
 
 public class DetailActivity extends AppCompatActivity {
+
     @BindView(R.id.release)
     TextView txt_Release;
-    /*    @BindView(R.id.rating)
-        TextView txt_Rating;*/
     @BindView(R.id.title)
     TextView txt_Title;
     @BindView(R.id.image_poster)
@@ -65,21 +65,16 @@ public class DetailActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         postponeEnterTransition();
 
-
-
-        //getActionBar().setDisplayHomeAsUpEnabled(true);
-
-
-        Movie movie = getIntent().getParcelableExtra("data");
+        Result movie = getIntent().getParcelableExtra("data");
         String name = getIntent().getExtras().getString(MainActivity.EXTRA_ANIMAL_IMAGE_TRANSITION_NAME);
-        Float rating= Float.valueOf(movie.getVoteAverage());
-        Float cal=(5*rating)/10;
+        Float rating = Float.valueOf(movie.getVoteCount());
+        Float cal = (5 * rating) / 10;
 
         mRatingbar.setRating(cal);
 
         img_Poster.setTransitionName(name);
-        Picasso.get().load("https://image.tmdb.org/t/p/w500" + movie.getBackImage()).into(app_bar_img);
-        Picasso.get().load("https://image.tmdb.org/t/p/w500" + movie.getImage()).transform(new RoundedTransformation(20, 0)).into(img_Poster, new Callback() {
+        Picasso.get().load("https://image.tmdb.org/t/p/w500" + movie.getBackdropPath()).into(app_bar_img);
+        Picasso.get().load("https://image.tmdb.org/t/p/w500" + movie.getPosterPath()).transform(new RoundedTransformation(20, 0)).into(img_Poster, new Callback() {
             @Override
             public void onSuccess() {
                 startPostponedEnterTransition();
@@ -94,7 +89,6 @@ public class DetailActivity extends AppCompatActivity {
 
         txt_Title.setText(movie.getTitle());
         txt_Plot.setText(movie.getOverview());
-        /*txt_Rating.setText(movie.getVoteAverage() + "/10");*/
         txt_Release.setText(movie.getReleaseDate());
 
 
