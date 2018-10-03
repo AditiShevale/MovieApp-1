@@ -30,10 +30,6 @@ import static android.content.ContentValues.TAG;
 public class NetworkUtils {
 
     final static String MOVIE_DB_URL = "http://api.themoviedb.org/3/movie/";
-    private static final String MOVIE_REVIEW_URL = "https://api.themoviedb.org/3/movie";
-    final static String MOVIE_TRAILER_URL = "https://api.themoviedb.org/3/movie";
-    private static final String BASE_YOUTUBE_URL = "https://www.youtube.com/watch";
-
 
     final static String API_KEY = "api_key";
 

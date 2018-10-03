@@ -25,10 +25,6 @@ public class MainViewModel extends AndroidViewModel {
     public MainViewModel(Application application) {
         super(application);
 
-
-
-
-
         mRespository = new Respository(application);
         userList=mRespository.getData();
         networkState=mRespository.getNetworkState();

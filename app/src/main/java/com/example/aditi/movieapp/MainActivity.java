@@ -36,7 +36,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public abstract class MainActivity extends AppCompatActivity implements
+public class MainActivity extends AppCompatActivity implements
         RecyclerMovieP.ListItemClickListener {
 
 
@@ -51,7 +51,7 @@ public abstract class MainActivity extends AppCompatActivity implements
     private RecyclerMovieP mRecyclerMovie;
     private MainViewModel viewModel;
 
-    // onSaveinstance varibale
+    // onSaveInstance variable
 
     private final static String MENU_SELECTED = "selected";
     private int selected = -1;
@@ -75,13 +75,6 @@ public abstract class MainActivity extends AppCompatActivity implements
 
 
 
-        /*viewModel.mLiveData().observe(this, new Observer<List<Result>>() {
-            @Override
-            public void onChanged(@Nullable List<Result> results) {
-                setupRecyclerView(results);
-            }
-        });*/
-
         viewModel.getData().observe(this, new Observer<PagedList<Result>>() {
             @Override
             public void onChanged(@Nullable PagedList<Result> results) {
@@ -102,78 +95,8 @@ public abstract class MainActivity extends AppCompatActivity implements
         mrecyclerView.setAdapter(mRecyclerMovie);
 
 
-       /* RemoteNetworkCall.getIntData().observe(this, new Observer<List<Result>>() {
-            @Override
-            public void onChanged(@Nullable List<Result> results) {
-                setupRecyclerView(results);
-            }
-        });*/
+           }
 
-
-        //loadDefault("popular");
-        //build("popular");
-
-        //onSavedInstance loading if exist
-
-       /* if (savedInstanceState != null) {
-            selected = savedInstanceState.getInt(MENU_SELECTED);
-
-            if (selected == -1) {
-
-                loadDefault("top_rated");
-
-            } else if (selected == R.id.highest_Rated) {
-
-                loadDefault("popular");
-            } else {
-
-                loadDefault("top_rated");
-            }
-
-        }*/
-
-
-    }
-
-   /* private void setUpViewModel() {
-
-
-        MainViewModel viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-        Object obj=viewModel.getAllMovies();
-
-
-        //setupRecyclerView(viewModel.getAllMovies());
-
-
-    }*/
-
-
-
-    /*private void setupRecyclerView(List<Result> results) {
-
-        if (results != null) {
-
-            mRecyclerMovie = new RecyclerMovie(MainActivity.this, results, new RecyclerMovie.ListItemClickListener() {
-                @Override
-                public void onListItemClick(Result movie) {
-
-                    Intent intent = new Intent(MainActivity.this, DetailActivity.class);
-                    intent.putExtra("data", movie);
-                    startActivity(intent);
-
-
-                }
-            });
-
-
-            *//*mrecyclerView.setAdapter(mRecyclerMovie);
-            mRecyclerMovie.notifyDataSetChanged();*//*
-        } else {
-            Toast.makeText(this, "List Null", Toast.LENGTH_SHORT).show();
-        }
-
-
-    }*/
 
 
     //onsaveInstanceState
@@ -200,17 +123,13 @@ public abstract class MainActivity extends AppCompatActivity implements
         int id = item.getItemId();
         switch (id) {
             case R.id.highest_Rated:
-                //build("top_rated");
-                // loadDefault("popular");
-                //  viewModel.getTopRated();
+
                 selected = id;
 
                 break;
 
             case R.id.most_popular:
-                //build("popular");
-                //loadDefault("top_rated");
-                // viewModel.getPopular();
+
                 selected = id;
                 break;
         }
@@ -227,9 +146,4 @@ public abstract class MainActivity extends AppCompatActivity implements
         startActivity(intent);
     }
 
-    /*private URL build(String sort) {
-        URL final_Url = NetworkUtils.buildURl(sort);
-        new MovieDbQUeryTask().execute(final_Url);
-        return final_Url;
-    }*/
-}
+  }

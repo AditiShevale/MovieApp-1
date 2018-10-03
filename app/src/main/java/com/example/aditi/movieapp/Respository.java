@@ -31,7 +31,8 @@ public class Respository {
         MovieDataFactory movieDataFactory = new MovieDataFactory(executor);
         tDataSource = movieDataFactory.getMutableLiveData();
 
-        networkState = Transformations.switchMap(movieDataFactory.getMutableLiveData(), dataSource -> {
+        networkState = Transformations.switchMap(movieDataFactory.getMutableLiveData(),
+                dataSource -> {
             return dataSource.getNetworkState();
         });
 

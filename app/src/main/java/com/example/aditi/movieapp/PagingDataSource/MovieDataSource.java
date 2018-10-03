@@ -71,7 +71,7 @@ public class MovieDataSource extends PageKeyedDataSource<Long, Result> {
 
                     @Override
                     public void onFailure(Call<Example> call, Throwable t) {
-                        Log.d("urlInitial", "faliure");
+                        Log.d("urlInitial", "failure");
 
                         String errorMessage = t == null ? "unknown error" : t.getMessage();
                         networkState.postValue(new NetworkState(NetworkState.Status.FAILED, errorMessage));
@@ -103,7 +103,7 @@ public class MovieDataSource extends PageKeyedDataSource<Long, Result> {
                             long nextKey = (params.key == response.body().getTotalResults()) ? null : params.key + 1;
                             String uri = call.request().url().toString();
 
-                            Log.d("urlxxxAfter", uri);
+                            Log.d("urlAfter", uri);
                             callback.onResult(response.body().getResults(), nextKey);
                             networkState.postValue(NetworkState.LOADED);
 

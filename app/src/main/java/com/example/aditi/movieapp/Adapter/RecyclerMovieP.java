@@ -30,8 +30,6 @@ public class RecyclerMovieP extends PagedListAdapter<Result, RecyclerView.ViewHo
     private ListItemClickListener mOnClickListener;
 
 
-
-
     //Interface
 
     public interface ListItemClickListener {
@@ -49,10 +47,7 @@ public class RecyclerMovieP extends PagedListAdapter<Result, RecyclerView.ViewHo
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        /*View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.custom_list, parent, false);
 
-        return new MyViewHolder(itemView);*/
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view;
 
@@ -69,20 +64,15 @@ public class RecyclerMovieP extends PagedListAdapter<Result, RecyclerView.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        Log.d("xxxuuu", String.valueOf(position));
+        Log.d("uuu", String.valueOf(position));
 
-     /*   Result movie = mMovieList.get(position);
 
-        Picasso.get().load("https://image.tmdb.org/t/p/w500" + movie.getPosterPath()).transform(new RoundedTransformation(14, 0)).into(holder.img_movie);
-        // holder.bind(mMovieList.get(position), mOnClickListener);
-        //ViewCompat.setTransitionName(holder.img_movie, movie.getTitle());*/
         switch (getItemViewType(position)) {
 
             case R.layout.custom_list:
                 Result movie = getItem(position);
                 ((ViewHolder) holder).bindTo(movie);
 
-                //((MyViewHolder) holder).bindTo(getItem(position));
                 break;
             case R.layout.network_state_item:
                 ((NetworkStateItemViewHolder) holder).bindView(networkState);
@@ -126,12 +116,6 @@ public class RecyclerMovieP extends PagedListAdapter<Result, RecyclerView.ViewHo
             return R.layout.custom_list;
         }
     }
-
-    /*@Override
-    public int getItemCount() {
-        Log.d("sizePage", String.valueOf(mMovieList.size()));
-        return mMovieList.size();
-    }*/
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 

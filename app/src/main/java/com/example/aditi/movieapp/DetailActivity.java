@@ -26,9 +26,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import com.example.aditi.movieapp.Adapter.Movie;
-import com.example.aditi.movieapp.Data.Contract;
+import com.example.aditi.movieapp.Picasso.RoundedTransformation;
 import com.example.aditi.movieapp.model.Result;
 import com.facebook.stetho.Stetho;
 import com.like.LikeButton;
@@ -61,7 +59,7 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
+        setContentView(R.layout.activity_details);
         ButterKnife.bind(this);
         postponeEnterTransition();
 
