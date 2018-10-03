@@ -41,7 +41,7 @@
                     android:fontFamily="serif"
                     android:textColor="#FFFFFF"
                     android:background="@drawable/rounded_text_bg"
-                    android:text="BlockBuster Movies"
+                    android:text="Movies"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
