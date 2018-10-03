@@ -48,4 +48,4 @@ limitations under the License.
 #
 
 
-[Udacity Android Developer Nanodegree Certificate](https://confirm.udacity.com/JDMTWDA5)
+[Udacity Android Developer Nanodegree Certificate](https://graduation.udacity.com/confirm/KNKHHUHG)
